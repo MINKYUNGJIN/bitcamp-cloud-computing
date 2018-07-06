@@ -2,17 +2,13 @@ package bitcamp.pms.servlet.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bitcamp.pms.dao.MemberDao;
 import bitcamp.pms.domain.Member;
 
 @SuppressWarnings("serial")
@@ -40,7 +36,9 @@ public class MemberViewServlet extends HttpServlet{
         out.println("<form action='update' method='post'>");
         
         try {
-            Member member = selectOne(id);
+            MemberDao memberDao = 
+                    (MemberDao)getServletContext().getAttribute("memberDao");
+            Member member = memberDao.selectOne(id);
             if (member == null) {
                 out.println("<p>유효하지 않은 멤버 아이디 입니다.</p>");
             }
@@ -68,29 +66,6 @@ public class MemberViewServlet extends HttpServlet{
         } catch (Exception e) {
             out.printf("<p>%s</p>\n", e.getMessage());
             e.printStackTrace(out);
-        }
-    }
-    
-    private Member selectOne(String id) throws Exception{
-        Class.forName("com.mysql.jdbc.Driver");
-        try (
-            Connection con = DriverManager.getConnection(
-                "jdbc:mysql://13.209.67.27:3306/studydb",
-                "study", "1111");
-            PreparedStatement stmt = con.prepareStatement(
-                "select mid,email from pms2_member where mid=?");) {
-            
-            stmt.setString(1, id);
-            
-            try (ResultSet rs = stmt.executeQuery();) {
-                if (!rs.next()) {
-                    return null;
-                }
-               Member member = new Member();
-               member.setId(rs.getString("mid"));
-               member.setEmail(rs.getString("email"));
-               return member;
-            }
         }
     }
 }

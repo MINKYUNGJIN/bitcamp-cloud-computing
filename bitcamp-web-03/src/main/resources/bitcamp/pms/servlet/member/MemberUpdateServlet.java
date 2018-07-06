@@ -2,16 +2,13 @@ package bitcamp.pms.servlet.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bitcamp.pms.dao.MemberDao;
 import bitcamp.pms.domain.Member;
 
 @SuppressWarnings("serial")
@@ -39,12 +36,14 @@ public class MemberUpdateServlet extends HttpServlet {
         out.println("<h1>회원 변경 결과</h1>");
         
         try {
+            MemberDao memberDao = 
+                    (MemberDao)getServletContext().getAttribute("memberDao");
             Member member = new Member();
             member.setId(request.getParameter("id"));
             member.setEmail(request.getParameter("email"));
             member.setPassword(request.getParameter("password"));
          
-            if(update(member) == 0) {
+            if(memberDao.update(member) == 0) {
                 out.println("<p>해당 회원이 존재하지 않습니다.</p>");
             }else {
                 out.println("<p>변경하였습니다.</p>");
@@ -56,22 +55,5 @@ public class MemberUpdateServlet extends HttpServlet {
         }
         out.println("</body>");
         out.println("</html>");
-    }
-    
-    private int update(Member member) throws Exception{
-        Class.forName("com.mysql.jdbc.Driver");
-        try (
-            Connection con = DriverManager.getConnection(
-                "jdbc:mysql://13.209.67.27:3306/studydb",
-                "study", "1111");
-            PreparedStatement stmt = con.prepareStatement(
-                "update pms2_member set email=?, pwd=password(?) where mid=?");) {
-            
-            stmt.setString(1, member.getEmail());
-            stmt.setString(2, member.getPassword());
-            stmt.setString(3, member.getId());
-            
-            return stmt.executeUpdate();
-        }
     }
 }
