@@ -47,6 +47,7 @@ public class ContextLoaderListener
             sc.setAttribute("/member/add", 
                     new MemberAddController(memberDao));
             
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package bitcamp.pms.servlet.member;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +13,7 @@ import bitcamp.pms.domain.Member;
 
 @SuppressWarnings("serial")
 @WebServlet("/member/view")
-public class MemberViewServlet extends HttpServlet{
+public class MemberViewServlet extends HttpServlet {
     @Override
     protected void doGet(
             HttpServletRequest request, 
@@ -23,14 +24,23 @@ public class MemberViewServlet extends HttpServlet{
         
         try {
             MemberDao memberDao = 
-                    (MemberDao)getServletContext().getAttribute("memberDao");
-            
+                    (MemberDao) getServletContext().getAttribute("memberDao");
+                 
             Member member = memberDao.selectOne(id);
             request.setAttribute("member", member);
             request.setAttribute("view", "/member/view.jsp");
-            
+               
         } catch (Exception e) {
             request.setAttribute("error", e);
         }
     }
+    
 }
+
+
+
+
+
+
+
+

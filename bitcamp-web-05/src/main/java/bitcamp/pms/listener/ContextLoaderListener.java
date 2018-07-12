@@ -15,28 +15,26 @@ import bitcamp.pms.dao.MemberDao;
 
 @WebListener
 public class ContextLoaderListener 
-    implements ServletContextListener {
-    
+    implements ServletContextListener{
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        
         System.out.println("ContextLoaderListener 실행!");
         
         try {
             String resource = "bitcamp/pms/config/mybatis-config.xml";
-            InputStream inputStream = 
-                    Resources.getResourceAsStream(resource);
+            InputStream inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory =
               new SqlSessionFactoryBuilder().build(inputStream);
             
             MemberDao memberDao = new MemberDao(sqlSessionFactory);
-            
+        
             ServletContext sc = sce.getServletContext();
             sc.setAttribute("memberDao", memberDao);
-        } catch (Exception e) {
+            
+        }catch(Exception e) {
             e.printStackTrace();
         }
     }
 }
-
-
-
