@@ -39,3 +39,30 @@
 ## web-09 : 객체 생성을 자동화하기 뒤해 Ioc 컨테이너를 만들기
 - IoC 컨테이너를 통해 페이지 컨트롤러의 객체를 자동 생성한다.
 - 페이지 컨트롤러의 의존 객체를 자동으로 주입한다.
+
+## web-10 : Spring IcC 컨테이너 도입
+- 기존 직접 만든 IoC 컨테이너 대신에 스프링 컨테이너를 사용한다.
+- 라이브러리를 찾는다. (mvnrepository.com에서 spring context 5.0.7 버전 복사)
+- build.gradle에 의존 라이브러리 추가한다.
+- 'gradle cleanEclipse'를 실행하여 기존 이클립스 설정을 제거한다.
+- 'gradle eclipse'를 실행하여 이클립스 관련 설정 파일을 새로 만든다.
+- 이때 추가한 의존 라이브러리가 자동으로 다운로드 될 것이다.
+- 웹 프로젝트를 리프레시 하여 라이브러리 정보를 갱신한다.
+
+## ContextLoaderListener에서 Spring IoC 컨테이너 준비하기
+- 기존의 ApplicationContext 대신에 Spring IoC 컨테이너 객체를 생성한다.
+- bitcamp/pms/config/application-context.xml 파일을 생성한다.
+
+## DispatcherServlet에서 Spring IoC 컨테이너를 사용하기
+- 기존의 ApplicationContext 대신에 Spring IoC 컨테이너에 들어있는 페이지 컨트롤러를 찾아 실행한다.
+
+## ApplicationContext 클래스 제거한다.
+
+## 우리가 작성한 애노테이션 제거한다.
+- @Component 애노테이션 제거
+- @Controller
+- @Repository
+- @Autowired
+
+## DAO와 페이지 컨트롤러에서 애노테이션 패키지를 변경
+- 스프링 애노테이션으로 변경한다.
