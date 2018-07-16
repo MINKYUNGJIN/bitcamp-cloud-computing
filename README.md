@@ -49,20 +49,17 @@
 - 이때 추가한 의존 라이브러리가 자동으로 다운로드 될 것이다.
 - 웹 프로젝트를 리프레시 하여 라이브러리 정보를 갱신한다.
 
-## ContextLoaderListener에서 Spring IoC 컨테이너 준비하기
-- 기존의 ApplicationContext 대신에 Spring IoC 컨테이너 객체를 생성한다.
-- bitcamp/pms/config/application-context.xml 파일을 생성한다.
+## web-11 : Spring + Mybatis 연동하기
+- 기존에 직접 만든 SqlSessionFactoryBean 대신에 Mybatis가 제공하는 SqlSessionFactoryBean을 사용한다.
+- DB 커넥션 풀은 Mybatis 대신에 Spring에서 관리한다.
+- 트랜젝션을 다룰 수 있도록 트랜잭션 관리자를 설정한다.
+- Proxy 패턴을 사용한 DAO 자동 생성 기능을 이용한다.
 
-## DispatcherServlet에서 Spring IoC 컨테이너를 사용하기
-- 기존의 ApplicationContext 대신에 Spring IoC 컨테이너에 들어있는 페이지 컨트롤러를 찾아 실행한다.
+## web-12 : Spring WebMVC의 ContextLoaderListener 사용하기
+- 기존에 직접 만든 ContextLoaderListener 대신에 Spring WebMVC에서 제공하는 클래스를 사용한다.
 
-## ApplicationContext 클래스 제거한다.
+## web-13 : Spring WebMVC의 DispatcherServlet 사용하기
+- 기존에 직접 만든 DispatcherServlet 대신에 Spring WebMVC에서 제공하는 클래스를 사용한다.
 
-## 우리가 작성한 애노테이션 제거한다.
-- @Component 애노테이션 제거
-- @Controller
-- @Repository
-- @Autowired
-
-## DAO와 페이지 컨트롤러에서 애노테이션 패키지를 변경
-- 스프링 애노테이션으로 변경한다.
+## web-14 : JSP 경로를 /WEB-INF/폴더 아래로 옮긴다.
+- /WEB-INF 폴더 아래로 JSP를 옮기면 클라이언트에서 직접 요청할 수 없다.
