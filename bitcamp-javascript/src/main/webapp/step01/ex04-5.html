@@ -20,11 +20,11 @@ function f(){
 
   // 당연히 함수에서는 window 객체에 소속된 변수를 사용할 수 있다.
   console.log("f(): ", a);
-  console.log("f(): ", b); // 오류! 함수 밖에서는 함수의 로컬 변수를 사용할 수 없다.
+  console.log("f(): ", b); 
 }
 f();
 console.log(a);
-console.log(b);
+console.log(b); // 오류! 함수 밖에서는 함수의 로컬 변수를 사용할 수 없다.
 
 </script>
 
