@@ -26,5 +26,22 @@ var f1 = function(){
 f1();
 
 </script>
+
+
+<script>
+
+//ex
+function foo(){
+    var bar= function() {
+        console.log('hello');
+    };
+    return bar();
+    var bar = function() {
+         console.log('world');
+    };
+}
+foo();
+
+</script>
 </body>
 </html>
