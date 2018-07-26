@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트</title>
+</head>
+<body>
+<h1>태그의 기본 행위를 막기 - form의 submit 이벤트</h1>
+
+<form id ="form1" action="http://www.daum.net" 
+      onsubmit="return checkValidate()">
+<!-- 제어가 필요한 태그는 id를 주는 것이 나음 -->
+*이름 : <input id="fiName" type="text" name="name"><br>
+<!-- 모바일 창에서는 type을 text로 하게되면 일반 키보드가 나오기때문에 모바일에 맞게 타입을 바꿔주는게 좋음. 
+     type을 number로 하면 숫자 키보드가 올라옴.-->
+*나이 : <input id="fiAge" type="number" name="age"><br>
+전화 : <input id="fiTel" type="text" name="tel"><br>
+<input type="submit" value="등록"><br>
+</form>
+
+<script>
+"use strict"
+
+// onsubmit의 코드 실행 리턴 값이 true면 입력 폼의 action을 실행하고,
+// false면 실행하지 않는 특징을 이용한다.
+function checkValidate(){
+    if(fiName.value.length == 0 || fiAge.value.length == 0){
+        alert("필수 항목을 입력하세요!");
+        return false;
+    }
+    return true;
+};
+
+</script>
+
+</body>
+</html>

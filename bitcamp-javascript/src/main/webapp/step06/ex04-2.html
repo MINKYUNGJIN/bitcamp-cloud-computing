@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트</title>
+<style>
+img{
+    height : 150px;
+}
+
+</style>
+</head>
+<body>
+<h1>DOM API - 자식 태그 제거하기</h1>
+
+<div id="d1">
+	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSIQ2F_VX2eQ0T6N6EJu7TMh-JfxN73_a9fnGFmnUjD-EurY0g1Q">
+	<img src="https://www.kclf.org/wp-content/uploads/2016/06/rveZiVpj_12_338_ve_1450141178.jpg">
+	<img src="http://cphoto.asiae.co.kr/listimglink/6/2013042319452845242_1.jpg">
+	<img src="http://tenasia.hankyung.com/webwp_kr/wp-content/uploads/2018/01/2018011114083812187.jpg">
+	<img src="http://t1.daumcdn.net/liveboard/mylovekbs/b34455968b204354a26c278c73109fa3.JPG">
+</div>
+
+<script>
+"use strict"
+
+var tid = setInterval(() => {
+	var e = document.querySelector("#d1 > img:first-child");
+    
+	if(e==null){
+	    clearInterval(tid);
+	}
+
+	// d1 태그에 막내 자식 태그를 제거한다.
+	d1.removeChild(e);
+    
+}, 2000);
+
+</script>
+
+</body>
+</html>
