@@ -1,6 +1,5 @@
 package bitcamp.pms.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,13 +70,17 @@ public class MemberController {
     }
     
     @RequestMapping("view/{id}")
-    public Object view(@PathVariable String id) throws Exception {
-        HashMap<String, Object> data = new HashMap<>();
-        data.put("member", memberService.get(id));
-        return "data";
+    public String view(
+            @PathVariable String id,
+            Model model) throws Exception {
+        
+        Member member = memberService.get(id);
+        model.addAttribute("member", member);
+        return "member/view";
     }
 
 }
+
 
 
 

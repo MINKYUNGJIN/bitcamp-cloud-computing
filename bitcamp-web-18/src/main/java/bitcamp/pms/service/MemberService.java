@@ -11,6 +11,7 @@ import bitcamp.pms.domain.Member;
 
 @Service
 public class MemberService {
+    
     @Autowired MemberDao memberDao;
 
     public List<Member> list(int page, int size) {
@@ -26,19 +27,18 @@ public class MemberService {
         return memberDao.selectOne(id);
     }
 
-    
-    // 메서드에 @Transactional() 애노테이션을 붙이면, 
+    // 메서드에 @Transactional 애노테이션을 붙이면,
     // 메서드에서 수행하는 작업들을 한 단위로 묶어서 다루겠다는 의미다.
-    // 따라서 작업들 중에 한 개의 작업이라도 실패하면,
+    // 따라서 작성들 중에 한 개의 작업이라도 실패하면,
     // 이전에 성공했던 모든 작업들이 취소된다.
-    // 메서드 호출이 예외 없이 정상적으로 끝나면,
+    // 메서드 호출이 예외 없이 정상적으로 끝나면, 
     // DBMS에 commit을 요청하여 지금까지 한 작업을 실제 테이블에 적용시킨다.
-    //@Transactional()  //=>> 애노테이션 대신 xml 태그로 지정할 수 있다.
+    //@Transactional() // => 애노테이션 대신 xml 태그로 지정할 수 있다.
     public int update(Member member) {
         int count = memberDao.update(member);
         
-        if(count != 100)
-            throw new RuntimeException("일부로 예외 발생");
+//        if (count != 100)
+//            throw new RuntimeException("일부로 예외 발생!");
         
         return count;
     }
@@ -54,9 +54,9 @@ public class MemberService {
     public int getTotalPage(int size) {
         int count = memberDao.countAll();
         int totalPage = count / size;
-        
-        if(count % size > 0)
+        if (count % size > 0)
             totalPage++;
         return totalPage;
     }
 }
+
