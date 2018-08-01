@@ -55,5 +55,5 @@ HTML, CSS, JavaScript가 서버와 같은 컴퓨터에 있는 것이 아니라 �
 - src/main/webapp/html6/js 폴더에 common.js 파일을 만든다.
 - common.js에 서버 주소를 등록한다.
     
-Phonegap을 이용하여 모바일 웹앱 배치하기
-모바일 웹 앱은 웹 안에 웹 브라우저 컴포넌트를 삽입하여
+Phonegap 준비
+- ios/Android PhoneGap 앱 설치

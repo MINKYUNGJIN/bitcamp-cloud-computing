@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <title>app01</title>
+</head>
+<body>
+<div class="gameBoard">
+<h1>Tic-Tac-Toe 게임</h1>
+
+<table id="gListTable" class="table table-hover">
+<thead></thead>
+<tbody>
+  <tr><th></th> <th></th> <th></th></tr>
+  <tr><th></th> <th></th> <th></th></tr>
+  <tr><th></th> <th></th> <th></th></tr>
+</tbody>
+</table>
+
+<a href="../index.html">시작 페이지로 돌아가기</a>
+</div>
+
+<script>
+
+var gBoard = 0;
+var gBoardNo = 0;
+
+for(var i=0; i<3; i++){
+    for( var j=0; j<3; j++){
+        gBoard[i][j] += gBoardNo++;
+        console.log(gBoard);
+    }
+}
+</script>
+
+
+<script src="tictactoe.js"></script>
+
+
+
+</body>
+</html>
