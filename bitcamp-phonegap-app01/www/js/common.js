@@ -1,1 +1,1 @@
-var serverApiAddr = "http://192.168.0.56:8080/bitcamp-web-18";
+var serverApiAddr = "http://192.168.0.56:3001/bitcamp-web-18";
