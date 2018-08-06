@@ -12,14 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.coobird.thumbnailator.Thumbnailator;
+import net.coobird.thumbnailator.Thumbnails;
+
 @RestController
 @RequestMapping("/ajax")
 public class FileUploadRestController02 {
     
     @Autowired ServletContext sc;
     
-    @RequestMapping("upload01")
-    public Object upload01(
+    @RequestMapping("upload02")
+    public Object upload02(
             String name, 
             String age, 
             MultipartFile[] files) {
@@ -40,6 +43,20 @@ public class FileUploadRestController02 {
                 String path = sc.getRealPath("/files/" + newfilename);
                 file.transferTo(new File(path));
                 filenames.add(newfilename);
+                
+                Thumbnails.of(path)
+                          .size(20, 20)
+                          .outputFormat("jpg")
+                          .toFile(path + "_20x20");
+                Thumbnails.of(path)
+                          .size(80, 80)
+                          .outputFormat("jpg")
+                          .toFile(path + "_80x80");
+                Thumbnails.of(path)
+                          .size(120, 120)
+                          .outputFormat("jpg")
+                          .toFile(path + "_120x120");
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
