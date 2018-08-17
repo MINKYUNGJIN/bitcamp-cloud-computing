@@ -80,5 +80,22 @@
     - 톰캣 서버를 실행한다. 콘솔 창에 출력된 로그를 보고 설정 오류가 없는지 확인한다.
     - 웹 브라우저로 요청하여 실행 여부를 확인한다.
 
-
+### 4단계 - 기능구현
+- 회원 가입 구현
+    - 페이지 컨트롤러 작성(MemberController)
+    - 회원 가입 폼 작성(signUp.html, signUp.js)
+    - package.json 작성(외부 라이브러리 추가)
+    - 'npm install' 실행하여 프론트앤드 라이브러리 가져온다. 
+      (package.json이 있는 경로까지 내려가서 설치 후 프로젝트 refresh!)
+    - 공통 코드 작성(common.css, common.js, jquery.bit.js, footer.html)
+    - MemberService.java, MemberServiceImpl.java 작성
+    - MemberRepository.java, MemberMapper.xml 작성
+- 로그인 구현
+    - 로그인 폼 작성(signIn.html, signIn.js)
+    - 페이지 컨트롤러 작성(AuthController.java)
+    - MemberService.java, MemberServiceImpl.java에 메서드 추가
+    - MemberRepository.java에 메서드 추가
+    - MemberMapper.xml에 SQL문 추가
+- 명함관리 메인화면
+    - 메인화면 작성(businesscard/index.html)
 
