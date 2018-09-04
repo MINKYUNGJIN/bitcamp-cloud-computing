@@ -3,7 +3,6 @@ package bitcamp.assignment.web.json;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +15,7 @@ public class MemberController {
     
     @Autowired MemberService memberService;
     
-    @PostMapping("signUp")
+    @RequestMapping("signUp")
     public Object signUp(Member member) {
         
         HashMap<String,Object> result = new HashMap<>();
